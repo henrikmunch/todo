@@ -1,4 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using efscaffold;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<MyDbContext>(conf =>
+{
+    conf.UseNpgsql();
+});
+
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
