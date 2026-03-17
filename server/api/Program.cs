@@ -1,3 +1,4 @@
+using System.Text.Json;
 using api;
 using efscaffold;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var appOptions = builder.Services.AddAppOptions(builder.Configuration);
 
+Console.WriteLine("The app options are: " + JsonSerializer.Serialize(appOptions));
 builder.Services.AddDbContext<MyDbContext>(conf =>
 {
     conf.UseNpgsql(appOptions.DbConnectionString);
