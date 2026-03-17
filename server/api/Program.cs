@@ -1,7 +1,8 @@
-using Microsoft.EntityFrameworkCore;
-using efscaffold;
-using efscaffold.Entities;
 using api;
+using efscaffold;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +15,9 @@ builder.Services.AddDbContext<MyDbContext>(conf =>
 
 var app = builder.Build();
 
-app.MapGet("/", (MyDbContext context) =>
+app.MapGet("/", ([FromServices] IOptionsMonitor<AppOptions> optionsMonitor, [FromServices] MyDbContext context) =>
 {
-    var Todo = new Todo()
+    var Todo = new efscaffold.Entities.Todo()
     {
         Id = Guid.NewGuid().ToString(),
         Title = "Title",
