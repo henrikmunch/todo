@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MyDbContext>(conf =>
 {
-    conf.UseNpgsql("Server=ep-nameless-bonus-aha0bgj9-pooler.c-3.us-east-1.aws.neon.tech;DB=neondb;UID=neondb_owner;PWD=npg_KB7xHRfntOF4;SslMode=require");
+    conf.UseNpgsql("");
 });
 
 var app = builder.Build();
